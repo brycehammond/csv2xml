@@ -5,6 +5,7 @@ gem 'rails', '4.2.0'
 
 # Assets
 gem 'bootstrap-sass',  '~> 2.3.1.3'
+gem 'modernizr-rails', '~> 2.6.2'
 gem 'sass-rails', '~> 5.0'
 gem 'colorize'
 
