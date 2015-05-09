@@ -3,11 +3,13 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 
-# Use SCSS for stylesheets
+# Assets
+gem 'bootstrap-sass',  '~> 2.3.1.3'
 gem 'sass-rails', '~> 5.0'
+gem 'colorize'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

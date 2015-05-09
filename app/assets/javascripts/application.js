@@ -12,4 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap
 //= require_tree .
+
+(function($) {
+  $(function() {
+    $(document).on("click", "[data-href]", function(e) {
+      e.stopPropagation();
+      window.location = $(this).data('href');
+    });
+  });
+})(jQuery);
