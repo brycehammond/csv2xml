@@ -1,14 +1,14 @@
+require 'csv'
+
 class TemplatesController < ApplicationController
-  before_action :set_template, only: [:show, :edit, :update, :destroy]
+  before_action :set_template, only: [:show, :edit, :update, :destroy, :csv]
 
   # GET /templates
-  # GET /templates.json
   def index
     @templates = Template.all
   end
 
   # GET /templates/1
-  # GET /templates/1.json
   def show
   end
 
@@ -22,7 +22,6 @@ class TemplatesController < ApplicationController
   end
 
   # POST /templates
-  # POST /templates.json
   def create
     @template = Template.new(template_params)
 
@@ -38,7 +37,6 @@ class TemplatesController < ApplicationController
   end
 
   # PATCH/PUT /templates/1
-  # PATCH/PUT /templates/1.json
   def update
     respond_to do |format|
       if @template.update(template_params)
@@ -52,13 +50,21 @@ class TemplatesController < ApplicationController
   end
 
   # DELETE /templates/1
-  # DELETE /templates/1.json
   def destroy
     @template.destroy
     respond_to do |format|
       format.html { redirect_to templates_url, notice: 'Template was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  #POST /templates/1/csv
+  def csv
+
+    file_data = params[:csv][:file_content]
+    
+    send_data CSVToXMLConverter.export_xml_file(@template, file_data), :filename => "#{@template.name}.xml", :type => "application/xml"
+
   end
 
   private
@@ -69,6 +75,6 @@ class TemplatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def template_params
-      params[:template]
+      params.require(:template).permit(:name, :wrapper, :item_template)
     end
 end

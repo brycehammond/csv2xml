@@ -1,4 +1,25 @@
-<p id="notice"><%= notice %></p>
+<h2><%= @template.name %></h2>
 
-<%= link_to 'Edit', edit_template_path(@template) %> |
-<%= link_to 'Back', templates_path %>
+<h4>Wrapper</h4>
+<p>
+    <pre><code class="language-xml" data-lang="xml"><%= @template.wrapper.strip %></code></pre>
+</p>
+
+<h4>Item Template</h4>
+<p>
+    <pre><code class="language-xml" data-lang="xml"><%= @template.item_template.strip %></code></pre>
+</p>
+
+<%= link_to 'Edit', edit_template_path(@template), :class => 'btn btn-primary' %>
+<%= link_to 'Back', templates_path, :class => 'btn btn-default' %>
+
+<h3>Create XML from CSV</h3>
+<p>
+    <%= simple_form_for :csv, url: csv_template_path(@template) do |f| %>
+    <%= f.input :file_content, as: :file, label: 'CSV file' %>
+    <%= f.submit "Create XML" %>
+    <% end %>
+</p>
+
+
+
